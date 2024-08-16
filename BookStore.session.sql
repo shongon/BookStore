@@ -1,0 +1,1 @@
+SELECT SUM(copies_left) FROM books WHERE category_id = 1;
