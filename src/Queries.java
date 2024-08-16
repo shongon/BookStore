@@ -130,4 +130,22 @@ public class Queries {
             e.printStackTrace();
         }
     }
+
+    //Get top 10 wished users
+    public static void getTop10WishedUsers() {
+        String queryWishedUser = "SELECT title, wished_users FROM books ORDER BY wished_users DESC LIMIT 10;";
+
+        try (Connection connection = DatabaseConnector.connect();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(queryWishedUser)) {
+            
+                while (resultSet.next()) {
+                    String title = resultSet.getString("title");
+                    int wishedUser = resultSet.getInt("wished_users");
+                    System.out.println("Title: " + title + ", Wished Users: " + wishedUser);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
